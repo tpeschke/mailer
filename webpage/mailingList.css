@@ -1,44 +1,32 @@
-
+     
   .shell {
-    width: 950px;
+    max-width: 950px;
     margin: 0 auto;
-    height: 488px;
-    background-image: url("./banner.jpg");
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: 0px -83px;
+    border: 5px solid #24261c;
   }
 
   .header {
       height: 250px;
-      position: relative;
-  }
-
-  .banner {
-    height: 488px;
-    background-image: url("./banner.jpg");
-    background-repeat: no-repeat;
-    background-size: 100%;
+      background-image: url("https://i.imgur.com/LaRwPmv.jpg");
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-position: 0px -83px;
   }
 
   .logo {
     height: 250px;
     width: 250px;
-    background-image: url("./plain-logo.png");
+    background-image: url("https://i.imgur.com/TatOGrh.png");
     background-repeat: no-repeat;
     background-size: 100%;
-    position: absolute;
-    top: -84px;
-    left: 21px
+    float: left;
   }
 
   .body {
     background: whitesmoke;
-    height: 100%;
-    border-top: 25px solid #24261c;
     border-bottom: 25px solid #24261c;
-    position: relative;
-    background-image: url("./background.jpg");
+    border-top: 25px solid #24261c;
+    background-image: url("https://i.imgur.com/CugeqP7.jpg");
     background-repeat: no-repeat;
     background-size: 100%;
   }
@@ -49,14 +37,14 @@
     margin: 0 auto;
     background: #24261c;
     border-radius: 100%;
-    position: relative;
-    top: -139px;
+    float: right;
+    margin: 41px 35px 0 0;
   }
 
   .icon {
     height: 140px;
     width: 140px;
-    background-image: url("./icon.png");
+    background-image: url("https://i.imgur.com/zN8lGa3.png");
     background-repeat: no-repeat;
     background-size: 100%;
     margin: 0 10px 0 13px;
@@ -64,13 +52,11 @@
 
   .content {
       padding: 30px;
-      position: absolute;
-      top: 0px;
   }
 
   .content h1 {
       color: #d1504c;
-      font-family: 'IM Fell English SC', serif;
+      font-family: 'Times New Roman', serif;
       font-size: 35px;
       text-align: center;
       margin-bottom: 5px;
@@ -78,7 +64,7 @@
 
   .content h2 {
     color: #24261c;
-    font-family: 'IM Fell English SC', serif;
+    font-family: 'Times New Roman', serif;
     font-size: 25px;
     margin: 10px 0 5px;
     border-bottom: 2px solid #24261c;
@@ -91,18 +77,26 @@
 
   .footer {
     height: 50px;
-    background-image: url("./footer.jpg");
+    background-image: url("https://i.imgur.com/EsnbL4m.jpg");
     background-repeat: no-repeat;
     background-size: 100%;
-    padding: 20px 421px;
   }
 
-  .footer a {
-      text-align: center;
-      width: 950px;
-      margin-top: 12px;
+  .unsubscribe-shell {
+    width: 150px;
+    margin: 0 auto;
+    padding-top: 12px;
+    text-align: center;
   }
 
   .footer a:hover {
     color: whitesmoke
+}
+
+@media (max-width: 650px) {
+
+  .header {
+      background-size: 650px auto; /* Force the image to its minimum width */
+  }
+
 }
