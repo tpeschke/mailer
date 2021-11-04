@@ -86,7 +86,8 @@ module.exports = {
         
           .content p {
               text-indent: 40px;
-              padding-top: 5px
+              padding-top: 5px;
+              margin: 0
           }
         
           .footer {
