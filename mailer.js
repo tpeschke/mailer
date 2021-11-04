@@ -24,6 +24,6 @@ massive(databaseCredentials).then(dbI => {
     app.set('db', dbI)
     app.listen(server, _ => {
         console.log(`I scream into the void but I only hear myself call back ${server}`)
-        workHorse.sendOutEmails(app.get('db'))
+        // workHorse.sendOutEmails(app.get('db'))
     })
 }).catch(e => console.log(e))

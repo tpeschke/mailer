@@ -72,7 +72,6 @@ module.exports = {
               color: #d1504c;
               font-family: 'Times New Roman', serif;
               font-size: 35px;
-              text-align: center;
               margin-bottom: 5px;
           }
         
