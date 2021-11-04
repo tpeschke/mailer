@@ -52,7 +52,6 @@ module.exports = {
             background: #24261c;
             border-radius: 100%;
             float: right;
-            margin: 41px 35px 0 0;
           }
         
           .icon {

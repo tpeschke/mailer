@@ -4,7 +4,6 @@ const express = require('express')
     , massive = require('massive')
     , { server, databaseCredentials } = require('./server-config')
     , path = require('path')
-    , sendMail = require('./controllers/sendMailCtrl')
     , workHorse = require('./controllers/workhorseCtrl')
 
 const app = new express()
@@ -24,6 +23,10 @@ massive(databaseCredentials).then(dbI => {
     app.set('db', dbI)
     app.listen(server, _ => {
         console.log(`I scream into the void but I only hear myself call back ${server}`)
-        // workHorse.sendOutEmails(app.get('db'))
+        var CronJob = require('cron').CronJob;
+        var job = new CronJob('0 0 0 * * *', function () {
+            workHorse.sendOutEmails(app.get('db'))
+        }, null, true, 'America/Los_Angeles');
+        job.start();
     })
 }).catch(e => console.log(e))
