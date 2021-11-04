@@ -1,0 +1,108 @@
+
+  .shell {
+    width: 950px;
+    margin: 0 auto;
+    height: 488px;
+    background-image: url("./banner.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: 0px -83px;
+  }
+
+  .header {
+      height: 250px;
+      position: relative;
+  }
+
+  .banner {
+    height: 488px;
+    background-image: url("./banner.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+  }
+
+  .logo {
+    height: 250px;
+    width: 250px;
+    background-image: url("./plain-logo.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    position: absolute;
+    top: -84px;
+    left: 21px
+  }
+
+  .body {
+    background: whitesmoke;
+    height: 100%;
+    border-top: 25px solid #24261c;
+    border-bottom: 25px solid #24261c;
+    position: relative;
+    background-image: url("./background.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+  }
+
+  .icon-shell {
+    height: 160px;
+    width: 160px;
+    margin: 0 auto;
+    background: #24261c;
+    border-radius: 100%;
+    position: relative;
+    top: -139px;
+  }
+
+  .icon {
+    height: 140px;
+    width: 140px;
+    background-image: url("./icon.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    margin: 0 10px 0 13px;
+  }
+
+  .content {
+      padding: 30px;
+      position: absolute;
+      top: 0px;
+  }
+
+  .content h1 {
+      color: #d1504c;
+      font-family: 'IM Fell English SC', serif;
+      font-size: 35px;
+      text-align: center;
+      margin-bottom: 5px;
+  }
+
+  .content h2 {
+    color: #24261c;
+    font-family: 'IM Fell English SC', serif;
+    font-size: 25px;
+    margin: 10px 0 5px;
+    border-bottom: 2px solid #24261c;
+  }
+
+  .content p {
+      text-indent: 40px;
+      padding-top: 5px
+  }
+
+  .footer {
+    height: 50px;
+    background-image: url("./footer.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    padding: 20px 421px;
+  }
+
+  .footer a {
+      text-align: center;
+      width: 950px;
+      margin-top: 12px;
+  }
+
+  .footer a:hover {
+    color: whitesmoke
+}
