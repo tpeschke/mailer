@@ -1,0 +1,1 @@
+select * from mailingList where mailingListBodyId is not null;

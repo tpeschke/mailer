@@ -5,6 +5,7 @@ const express = require('express')
     , { server, databaseCredentials } = require('./server-config')
     , path = require('path')
     , sendMail = require('./controllers/sendMailCtrl')
+    , workHorse = require('./controllers/workhorseCtrl')
 
 const app = new express()
 app.use(bodyParser.json())
@@ -23,6 +24,6 @@ massive(databaseCredentials).then(dbI => {
     app.set('db', dbI)
     app.listen(server, _ => {
         console.log(`I scream into the void but I only hear myself call back ${server}`)
-        // sendMail.sendTest();
+        workHorse.sendOutEmails(app.get('db'))
     })
 }).catch(e => console.log(e))

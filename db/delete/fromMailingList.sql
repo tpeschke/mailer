@@ -1,0 +1,1 @@
+delete from mailinglist where email = $1
