@@ -14,8 +14,15 @@ app.use(cors())
 // ================================== \\
 
 app.post('/addEmail', confirmation.sendConfirmationEmail)
-
 app.get('/confirmEmail/:email', confirmation.confirmEmail)
+
+app.get('/unsubscribe/:email', (req, res) => {
+    let db = req.app.get('db')
+    db.delete.fromMailingList(req.params.email).then(_ => {
+        res.sendFile(path.join(__dirname + '/webpage/unsubscribe.html'))
+    })
+})
+
 app.get('/webpage/assets/:file', (req, res) => {
     res.sendFile(path.join(__dirname + '/webpage/assets/' + req.params.file))
 })

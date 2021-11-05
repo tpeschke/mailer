@@ -18,7 +18,7 @@ module.exports = {
                     from: `Trent Peschke <${myEmail}>`,
                     to: email,
                     subject: subject,
-                    html: getHeader() + body + getFooter()
+                    html: getHeader() + body + getFooter(email)
                 };
 
                 transporter.sendMail(mailOptions, (error, info) => {

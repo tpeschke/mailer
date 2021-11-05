@@ -115,6 +115,10 @@ module.exports = {
             padding-top: 12px;
             text-align: center;
           }
+
+          .footer a {
+            color: black !important
+          }
         
           .footer a:hover {
             color: whitesmoke
@@ -150,13 +154,13 @@ module.exports = {
               <div class="icon"></div>
             </div>`
     },
-    getFooter: () => {
+    getFooter: (email) => {
         return `</div>
 
         </div>
         <div class="footer">
           <div class="unsubscribe-shell">
-            <a>Unsubscribe</a>
+            <a href='${urlBase}/unsubscribe/${email}' target='_blank'>Unsubscribe</a>
           </div>
         </div>
       </div>

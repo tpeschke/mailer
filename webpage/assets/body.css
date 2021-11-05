@@ -118,6 +118,16 @@ button:hover {
   border-top-right-radius: 15px;
 }
 
+.unsubscribe-banner {
+  background-image: url("./unsubscribe.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 26vw;
+  width: 100%;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
 .confirmation-body {
   padding: 15px
 }
@@ -144,6 +154,12 @@ button:hover {
 
   .confirmation-banner {
     height: 40vw;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+  }
+
+  .unsubscribe-banner {
+    height: 52vw;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
   }
