@@ -46,8 +46,8 @@ confirmation = {
             }
         })
     },
-    removeEmailsFromConfirmationTable: () => {
-
+    removeEmailsFromConfirmationTable: (db) => {
+        db.delete.oldConfirmationEmails()
     }
 }
 

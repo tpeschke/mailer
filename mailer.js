@@ -38,8 +38,9 @@ massive(databaseCredentials).then(dbI => {
     app.listen(server, _ => {
         console.log(`I scream into the void but I only hear myself call back ${server}`)
         var CronJob = require('cron').CronJob;
-        var job = new CronJob('0 0 0 * * *', function () {
+        var job = new CronJob('0 0 0 */21 * *', function () {
             workHorse.sendOutEmails(app.get('db'))
+            confirmation.removeEmailsFromConfirmationTable(app.get('db'))
         }, null, true, 'America/Los_Angeles');
         job.start();
     })
