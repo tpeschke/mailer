@@ -15,12 +15,12 @@ app.use(cors())
 
 app.post('/addEmail', confirmation.sendConfirmationEmail)
 
-app.get('/confirmEmail/:email', (req, res) => {
-    console.log(req.params.email)
-    res.sendFile(path.join(__dirname + '/webpage/confirmationPage.html'))
-})
+app.get('/confirmEmail/:email', confirmation.confirmEmail)
 app.get('/webpage/assets/:file', (req, res) => {
     res.sendFile(path.join(__dirname + '/webpage/assets/' + req.params.file))
+})
+app.get('/webpage/:file', (req, res) => {
+    res.sendFile(path.join(__dirname + '/webpage/' + req.params.file))
 })
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname + '/webpage/index.html'))

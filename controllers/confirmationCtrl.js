@@ -1,5 +1,6 @@
 const sendMailCtrl = require('./sendMailCtrl');
 const { urlBase } = require("../server-config.js");
+const path = require('path')
 
 confirmation = {
     sendConfirmationEmail: (req, res) => {
@@ -8,12 +9,13 @@ confirmation = {
 
         db.get.checkForEmail(personsEmail).then(emails => {
             if (emails.length > 0) {
-                // do something, I guess
-                console.log('Duplicate Email')
-            } else {
-                // add to emailconfirmationtable
-                // with date
-                sendMailCtrl.sendEmail(personsEmail, 'Bonfire Mailing List Confirmation', confirmation.createConfirmationBody(personsEmail))
+                res.send({message:"duplicate email"})
+             } else {
+                var today = new Date().toISOString();
+                db.add.toConfirmation(personsEmail, today).then(_ => {
+                    sendMailCtrl.sendEmail(personsEmail, 'Bonfire Mailing List Confirmation', confirmation.createConfirmationBody(personsEmail))
+                    res.send({message:"good to go"})
+                })
             }
         })
     },
@@ -25,16 +27,22 @@ confirmation = {
         <p>- Trent</p>`
     },
     confirmEmail: (req, res) => {
-        let personsEmail = req.body.email
+        let personsEmail = req.params.email
         ,   db = req.app.get('db')
 
-        db.get.checkForEmail(personsEmail).then(emails => {
+        db.get.checkForEmailInConfirmation(personsEmail).then(emails => {
             if (emails.length > 0) {
-                // remove from confirmation table
-                let welcomeEmailId = '4tpDXd1wURrCQk8nKsBCq4zzwBXunX63JR0fJWoaoBHbS2vCsF'
-                , secondEmailId = 'El1ckxpr5S2IEK35ylpnQGct9FijE7HzlNLhudyko3YgpC1kb1'
-                // add to mailinglist table
-                // send welcome email
+                db.delete.fromConfirmationList(personsEmail).then(_ => {
+                    db.add.toMailingList(personsEmail).then( _ => {
+                        let welcomeEmailId = '4tpDXd1wURrCQk8nKsBCq4zzwBXunX63JR0fJWoaoBHbS2vCsF'
+                        db.get.emailToSend(welcomeEmailId).then(email => {
+                            let emailToSend = email[0]
+                            sendMailCtrl.sendEmail(personsEmail, emailToSend.subject, emailToSend.body).then(_ => {
+                                res.sendFile(path.join(__dirname + '/../webpage/confirmationPage.html'))
+                            })
+                        })
+                    }).catch(e=>console.log(e))
+                })
             }
         })
     },
