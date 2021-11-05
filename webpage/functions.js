@@ -17,7 +17,7 @@ let inputValue = '';
 
 function sendEmail () {
     if (validateEmail(inputValue)) {
-        postData().then(result => {
+        postData('addEmail', {email: inputValue}).then(result => {
             document.getElementById("inputOne").value = ''
             document.getElementById("inputTwo").value = ''
         })
@@ -35,8 +35,12 @@ function setInputValues(value) {
     inputValue = value
 }
 
-async function postData() {
-    const response = await fetch(window.location.href + 'addEmail', {
+function saveNewEmail(body) {
+    postData('addNewEmail', body).then(_ => alert('Saved'))
+}
+
+async function postData(slug, body) {
+    const response = await fetch(window.location.origin + '/' + slug, {
       method: 'POST',
       mode: 'cors', 
       cache: 'no-cache',
@@ -46,7 +50,7 @@ async function postData() {
       },
       redirect: 'follow',
       referrerPolicy: 'no-referrer', 
-      body: JSON.stringify({email: inputValue})
+      body: JSON.stringify(body)
     });
     return response.json();
-  }
+}

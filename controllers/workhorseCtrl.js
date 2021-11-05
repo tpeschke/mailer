@@ -1,24 +1,34 @@
 const sendMailCtrl = require('./sendMailCtrl');
 
 let errors = [];
+function makeid() {
+    var result = '';
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for (var i = 0; i < 50; i++) {
+        result += characters.charAt(Math.floor(Math.random() *
+            charactersLength));
+    }
+    return result;
+}
 
 let workHorse = {
     sendOutEmails: (db) => {
         errors = []
         db.get.mailingList().then(mailingList => {
             // check for unique emails
-                // if yes
-                    // take first one off top
-                    // iterate through mailing list
-                        // send to each person
-                    // delete email from table
-                // if no
-                    workHorse.handleSendingEachEmail(mailingList, 0, db)
+            // if yes
+            // take first one off top
+            // iterate through mailing list
+            // send to each person
+            // delete email from table
+            // if no
+            workHorse.handleSendingEachEmail(mailingList, 0, db)
         })
     },
     handleSendingEachEmail: (mailingList, index, db) => {
         let person = mailingList[index]
-        if (person && person.mailinglistbodyid !== 'waiting') { 
+        if (person && person.mailinglistbodyid !== 'waiting') {
             db.get.emailToSend(person.mailinglistbodyid).then(email => {
                 let emailToSend = email[0]
                 if (emailToSend) {
@@ -44,7 +54,7 @@ let workHorse = {
                 } else {
                     errors.push(`Couldn't find an email to send to ${person.email}`)
                     workHorse.handleSendingEachEmail(mailingList, ++index, db)
-                }           
+                }
             })
         } else if (person) {
             errors.push(`${person.email} has reached the end of the prepared emails`)
@@ -56,6 +66,19 @@ let workHorse = {
             })
             sendMailCtrl.sendEmailToMe("Emails Sent Out", messageString)
         }
+    },
+    saveNewEmail: (req, res) => {
+        let newEmail = req.body
+            , db = req.app.get('db')
+
+        newEmail.body += '<br><p>- Trent</p>'
+
+        let newId = makeid();
+        db.update.nextmailinglistbodyid(newId).then(_ => {
+            db.add.newEmail(newId, newEmail.subject, newEmail.body).then(_ => {
+                res.send({message: 'successful'})
+            })
+        })
     }
 }
 module.exports = workHorse

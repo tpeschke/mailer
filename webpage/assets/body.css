@@ -108,6 +108,21 @@ button:hover {
   border-radius: 15px;
 }
 
+.editor-shell {
+  margin: 15px auto;
+  background: whitesmoke;
+  width: 100%;
+  max-width: 890px;
+  padding: 30px
+}
+
+.editor-shell input {
+  margin-bottom: 15px;
+  border-bottom: 2px solid;
+  width: 100%;
+  padding: 10px;
+}
+
 .confirmation-banner {
   background-image: url("./confirmation.jpg");
   background-repeat: no-repeat;
@@ -145,19 +160,16 @@ button:hover {
   .backgroundMobile {
     display: inherit;
   }
-
   .confirmation-shell {
     margin: 0 auto;
     width: 100%;
     border-radius: 0;
   }
-
   .confirmation-banner {
     height: 40vw;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
   }
-
   .unsubscribe-banner {
     height: 52vw;
     border-top-left-radius: 0px;

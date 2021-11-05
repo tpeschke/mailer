@@ -66,6 +66,7 @@ module.exports = {
             background: #24261c;
             border-radius: 100%;
             float: right;
+            margin: 0px 0px 0px 15px;
           }
         
           .icon {
@@ -82,7 +83,7 @@ module.exports = {
           }
         
           .content h1 {
-              color: #d1504c;
+              color: black;
               font-family: 'Times New Roman', serif;
               font-size: 35px;
               margin-bottom: 5px;

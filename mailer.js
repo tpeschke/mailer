@@ -29,6 +29,11 @@ app.get('/webpage/assets/:file', (req, res) => {
 app.get('/webpage/:file', (req, res) => {
     res.sendFile(path.join(__dirname + '/webpage/' + req.params.file))
 })
+app.get('/editor', (req, res) => {
+    res.sendFile(path.join(__dirname + '/webpage/editor.html'))
+})
+app.post('/addNewEmail', workHorse.saveNewEmail)
+
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname + '/webpage/index.html'))
 })
