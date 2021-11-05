@@ -13,6 +13,20 @@ module.exports = {
           <meta name="viewport" content="width=device-width, initial-scale=1">
           <style>
      
+          button {
+            margin: 15px 0 15px 40px;
+            border-radius: 15px;
+            padding: 5px 15px;
+            border: none;
+            background: #222;
+            color: whitesmoke;
+            transition: .6s
+          }
+
+          button:hover {
+            background: grey;
+          }
+
           .shell {
             max-width: 950px;
             margin: 0 auto;

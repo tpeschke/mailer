@@ -11,3 +11,9 @@ create table mailinglistBodies (
 	body text,
 	nextMailingListBodyId varchar(50)
 )
+
+create table emailConfirmation (
+	id serial primary key,
+	email varchar(150),
+	dateAdded date
+)
