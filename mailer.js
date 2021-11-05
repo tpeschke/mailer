@@ -6,6 +6,7 @@ const express = require('express')
     , path = require('path')
     , workHorse = require('./controllers/workhorseCtrl')
     , confirmation = require('./controllers/confirmationCtrl')
+const sendMailCtrl = require('./controllers/sendMailCtrl')
 
 const app = new express()
 app.use(bodyParser.json())
@@ -29,7 +30,14 @@ app.get('/webpage/assets/:file', (req, res) => {
 app.get('/webpage/:file', (req, res) => {
     res.sendFile(path.join(__dirname + '/webpage/' + req.params.file))
 })
-app.get('/editor', (req, res) => {
+
+function checkIp(req, res, next) {
+    var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    sendMailCtrl.sendEmailToMe('ip', ip)
+    next()
+}
+
+app.get('/editor', checkIp, (req, res) => {
     res.sendFile(path.join(__dirname + '/webpage/editor.html'))
 })
 app.post('/addNewEmail', workHorse.saveNewEmail)
