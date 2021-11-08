@@ -2,11 +2,10 @@ const express = require('express')
     , bodyParser = require('body-parser')
     , cors = require('cors')
     , massive = require('massive')
-    , { server, databaseCredentials } = require('./server-config')
+    , { server, databaseCredentials, validAuthString } = require('./server-config')
     , path = require('path')
     , workHorse = require('./controllers/workhorseCtrl')
     , confirmation = require('./controllers/confirmationCtrl')
-const sendMailCtrl = require('./controllers/sendMailCtrl')
 
 const app = new express()
 app.use(bodyParser.json())
@@ -32,12 +31,14 @@ app.get('/webpage/:file', (req, res) => {
 })
 
 function checkIp(req, res, next) {
-    var ip = req.connection.remoteAddress;
-    console.log(ip)
-    next()
+    if(validAuthString === req.params.authString) {
+        next();
+    } else{
+        res.sendFile(path.join(__dirname + '/webpage/index.html'))
+    }
 }
 
-app.get('/editor', checkIp, (req, res) => {
+app.get('/editor/:authString', checkIp, (req, res) => {
     res.sendFile(path.join(__dirname + '/webpage/editor.html'))
 })
 app.post('/addNewEmail', workHorse.saveNewEmail)
