@@ -32,7 +32,7 @@ app.get('/webpage/:file', (req, res) => {
 })
 
 function checkIp(req, res, next) {
-    var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    var ip = req.connection.remoteAddress;
     console.log(ip)
     next()
 }
