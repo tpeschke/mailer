@@ -33,7 +33,7 @@ app.get('/webpage/:file', (req, res) => {
 
 function checkIp(req, res, next) {
     var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-    sendMailCtrl.sendEmailToMe('ip', ip)
+    console.log(ip)
     next()
 }
 
