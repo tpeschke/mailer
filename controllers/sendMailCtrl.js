@@ -1,5 +1,5 @@
 const nodemailer = require("nodemailer");
-const { email: myEmail, lock } = require("../server-config.js");
+const { client, secret, email: myEmail, accessToken, refreshToken } = require("../server-config.js");
 const { getHeader, getFooter, getTestContent } = require('../controllers/htmlTemplate');
 
 module.exports = {
@@ -9,8 +9,12 @@ module.exports = {
                 let transporter = nodemailer.createTransport({
                     service: 'Gmail',
                     auth: {
+                        type: "OAuth2",
                         user: myEmail,
-                        pass: lock
+                        clientId: client,
+                        clientSecret: secret,
+                        accessToken,
+                        refreshToken
                     }
                 });
 
@@ -36,8 +40,9 @@ module.exports = {
                 let transporter = nodemailer.createTransport({
                     service: 'Gmail',
                     auth: {
-                        user: myEmail,
-                        pass: lock
+                        type: "OAuth2",
+                        clientId: client,
+                        clientSecret: secret
                     }
                 });
 
