@@ -158,7 +158,7 @@
 
                 [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
                 [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-
+                ['link', 'image', 'video', 'formula'],
                 [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
                 [{ 'font': [] }],
                 [{ 'align': [] }],
@@ -167,7 +167,12 @@
             ]
             var options = {
                 modules: {
-                    toolbar: toolbarOptions
+                    toolbar: {
+                        container: toolbarOptions,
+                        handlers: {
+                            image: imageHandler
+                        }
+                    }
                 },
                 theme: 'snow'
             };
@@ -179,9 +184,17 @@
 
             function saveEmail() {
                 let subject = document.getElementById("subject").value
-                , body = editor.root.innerHTML;
+                    , body = editor.root.innerHTML;
                 if (subject && body) {
-                    saveNewEmail({subject, body})
+                    saveNewEmail({ subject, body })
+                }
+            }
+
+            function imageHandler() {
+                var range = this.quill.getSelection();
+                var value = prompt('please copy paste the image url here.');
+                if (value) {
+                    this.quill.insertEmbed(range.index, 'image', value, Quill.sources.USER);
                 }
             }
         </script>
@@ -199,7 +212,8 @@
                 </div>
 
                 <div id="preview"></div>
-                <br><p>- Trent</p>
+                <br>
+                <p>- Trent</p>
             </div>
         </div>
         <div class="footer">
@@ -212,4 +226,5 @@
 </body>
 
 <script src="/webpage/functions.js"></script>
+
 </html>

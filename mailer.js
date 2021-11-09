@@ -8,7 +8,8 @@ const express = require('express')
     , confirmation = require('./controllers/confirmationCtrl')
 
 const app = new express()
-app.use(bodyParser.json())
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(cors())
 
 // ================================== \\
@@ -22,6 +23,8 @@ app.get('/unsubscribe/:email', (req, res) => {
         res.sendFile(path.join(__dirname + '/webpage/unsubscribe.html'))
     })
 })
+
+app.get('/sendSpecificEmail/:emailId', workHorse.sendSpecificEmail)
 
 app.get('/webpage/assets/:file', (req, res) => {
     res.sendFile(path.join(__dirname + '/webpage/assets/' + req.params.file))

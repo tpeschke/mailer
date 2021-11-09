@@ -2,7 +2,7 @@ const nodemailer = require("nodemailer");
 const { client, secret, email: myEmail, accessToken, refreshToken } = require("../server-config.js");
 const { getHeader, getFooter, getTestContent } = require('../controllers/htmlTemplate');
 
-module.exports = {
+sendMailClient = {
     sendEmail: async (email, subject, body) => {
         return new Promise(resolve => {
             nodemailer.createTestAccount((err, account) => {
@@ -34,6 +34,9 @@ module.exports = {
             })
         })
     },
+    sendEmailToMeWithTemplating: async (subject, body) => {
+        sendMailClient.sendEmailToMe(subject, getHeader() + body + getFooter(''))
+    },
     sendEmailToMe: async (subject, body) => {
         return new Promise(resolve => {
             nodemailer.createTestAccount((err, account) => {
@@ -41,8 +44,11 @@ module.exports = {
                     service: 'Gmail',
                     auth: {
                         type: "OAuth2",
+                        user: myEmail,
                         clientId: client,
-                        clientSecret: secret
+                        clientSecret: secret,
+                        accessToken,
+                        refreshToken
                     }
                 });
 
@@ -63,3 +69,5 @@ module.exports = {
         })
     }
 }
+
+module.exports = sendMailClient

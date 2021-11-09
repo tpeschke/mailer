@@ -76,8 +76,19 @@ let workHorse = {
         let newId = makeid();
         db.update.nextmailinglistbodyid(newId).then(_ => {
             db.add.newEmail(newId, newEmail.subject, newEmail.body).then(_ => {
+                sendMailCtrl.sendEmailToMeWithTemplating(newEmail.subject, newEmail.body)
                 res.send({message: 'successful'})
             })
+        })
+    },
+    sendSpecificEmail: (req, res) => {
+        let { emailId } = req.params
+            , db = req.app.get('db')
+
+        db.get.emailToSend(emailId).then( email => {
+            email = email[0]
+            sendMailCtrl.sendEmailToMeWithTemplating(email.subject, email.body)
+            res.send({message: "sent"})
         })
     }
 }
