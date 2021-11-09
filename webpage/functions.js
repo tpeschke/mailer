@@ -16,11 +16,22 @@ let inputValue = '';
 })()
 
 function sendEmail () {
+    document.getElementById("invalidEmail").style.display = "none";
+    document.getElementById("duplicateEmail").style.display = "none";
+    document.getElementById("goodEmail").style.display = "none";
+
     if (validateEmail(inputValue)) {
         postData('addEmail', {email: inputValue}).then(result => {
-            document.getElementById("inputOne").value = ''
-            document.getElementById("inputTwo").value = ''
+            if (result.message === "duplicate email") {
+                document.getElementById("duplicateEmail").style.display = "inherit";
+            } else {
+                document.getElementById("inputOne").value = '';
+                document.getElementById("inputTwo").value = '';
+                document.getElementById("goodEmail").style.display = "inherit";
+            }
         })
+    } else {
+        document.getElementById("invalidEmail").style.display = "inherit";
     }
 }
 
