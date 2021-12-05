@@ -26,6 +26,8 @@ app.get('/unsubscribe/:email', (req, res) => {
 
 app.get('/sendSpecificEmail/:emailId', workHorse.sendSpecificEmail)
 
+app.get('/remainingTime', (req, res) => res.send({intervalLeft}))
+
 app.get('/webpage/assets/:file', (req, res) => {
     res.sendFile(path.join(__dirname + '/webpage/assets/' + req.params.file))
 })
@@ -50,15 +52,21 @@ app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname + '/webpage/index.html'))
 })
 // ================================== \\
+
+let interval = 1814400000
+let intervalLeft = interval
 massive(databaseCredentials).then(dbI => {
     app.set('db', dbI)
     app.listen(server, _ => {
         console.log(`I scream into the void but I only hear myself call back ${server}`)
-        var CronJob = require('cron').CronJob;
-        var job = new CronJob('0 0 0 */21 * *', function () {
+
+        setInterval(() => {
             workHorse.sendOutEmails(app.get('db'))
             confirmation.removeEmailsFromConfirmationTable(app.get('db'))
-        }, null, true, 'America/Los_Angeles');
-        job.start();
+            intervalLeft = interval
+        }, interval)
+        setInterval(() => {
+            intervalLeft -= 1000
+        }, 1000)
     })
 }).catch(e => console.log(e))

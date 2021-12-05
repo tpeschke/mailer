@@ -50,6 +50,35 @@ function saveNewEmail(body) {
     postData('addNewEmail', body).then(_ => alert('Saved'))
 }
 
+function getRemainingTime() {
+    getData('remainingTime').then(response => {
+        const total = response.intervalLeft
+        const seconds = Math.floor( (total/1000) % 60 );
+        const minutes = Math.floor( (total/1000/60) % 60 );
+        const hours = Math.floor( (total/(1000*60*60)) % 24 );
+        const days = Math.floor( total/(1000*60*60*24) % 7 );
+        const weeks = Math.floor( total/(1000*60*60*24*7) );
+      
+        const clock = document.getElementById('clock')
+        clock.innerHTML = weeks + ' weeks, ' + days + ' days, and ' + hours + ' hours left until next delivery.'
+    })
+}
+
+async function getData(slug) {
+    const response = await fetch(window.location.origin + '/' + slug, {
+        method: 'GET',
+        mode: 'cors', 
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer'
+      });
+      return response.json();
+}
+
 async function postData(slug, body) {
     const response = await fetch(window.location.origin + '/' + slug, {
       method: 'POST',
