@@ -1,5 +1,5 @@
 const nodemailer = require("nodemailer");
-const { client, secret, email: myEmail, accessToken, refreshToken } = require("../server-config.js");
+const { client, secret, email: myEmail, accessToken, refreshToken, password } = require("../server-config.js");
 const { getHeader, getFooter, getTestContent } = require('../controllers/htmlTemplate');
 
 sendMailClient = {
@@ -9,12 +9,11 @@ sendMailClient = {
                 let transporter = nodemailer.createTransport({
                     service: 'Gmail',
                     auth: {
-                        type: "OAuth2",
                         user: myEmail,
-                        clientId: client,
-                        clientSecret: secret,
-                        accessToken,
-                        refreshToken
+                        pass: password
+                    },
+                    tls: {
+                        rejectUnauthorized: false
                     }
                 });
 
@@ -43,13 +42,9 @@ sendMailClient = {
                 let transporter = nodemailer.createTransport({
                     service: 'Gmail',
                     auth: {
-                        type: "OAuth2",
                         user: myEmail,
-                        clientId: client,
-                        clientSecret: secret,
-                        accessToken,
-                        refreshToken
-                    }
+                        pass: password
+                    },
                 });
 
                 let mailOptions = {
