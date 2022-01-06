@@ -53,8 +53,8 @@ app.get('/*', (req, res) => {
 })
 // ================================== \\
 
-// let interval = 1814400000
-let interval = 604800000
+let interval = 1814400000
+// let interval = 604800000
 let intervalLeft = interval
 massive(databaseCredentials).then(dbI => {
     app.set('db', dbI)
