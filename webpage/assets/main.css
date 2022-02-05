@@ -1,0 +1,98 @@
+body {
+    margin: 30px auto;
+    width: 100%;
+    max-width: 715px;
+    border-radius: 5px 5px 0 0;
+}
+
+.banner {
+    position: relative;
+    width: 100%;
+    right: 0;
+    background-size: unset;
+    border-bottom: 5px solid #b45f06;
+}
+
+h1 {
+    width: unset;
+}
+
+h2 {
+    font-family: 'baldur';
+    position: absolute;
+    top: 18px;
+    left: 15px;
+    font-size: 39px;
+    width: 250px;
+}
+
+input {
+    background: lightgrey
+}
+
+.foreground {
+    height: unset;
+    border-bottom: 5px solid #b45f06;
+    background: whitesmoke;
+    border-radius: 0 0 5px 5px
+}
+
+.right {
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+@media (max-width: 715px) {
+    .banner-shell {
+        height: 150px;
+    }
+
+    .foreground, body {
+        border-radius: 0;
+    }
+
+    body {
+        margin: 0;
+    }
+
+    .foreground {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .left, .right {
+        width: 100%;
+    }
+
+    .left {
+        padding: 15px 15px 0;
+        text-align: center;
+    }
+
+    .right {
+        align-items: center;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 475px) {
+    .banner {
+        margin: 0 -50%;
+        width: unset;
+    }
+
+    h2 {
+        background: #2222226e;
+        color: white;
+        padding: 5px;
+        width: 100%;
+        text-align: center;
+        left: 0;
+    }
+}
+
+@media (max-width: 363px) {
+    h2 {
+        top: 10px
+    }
+ }

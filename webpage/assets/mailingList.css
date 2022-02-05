@@ -94,7 +94,6 @@
 }
 
 @media (max-width: 650px) {
-
   .header {
       background-size: 650px auto; /* Force the image to its minimum width */
   }

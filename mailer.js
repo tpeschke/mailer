@@ -35,6 +35,10 @@ app.get('/webpage/:file', (req, res) => {
     res.sendFile(path.join(__dirname + '/webpage/' + req.params.file))
 })
 
+app.get('/iframe', (req, res) => {
+    res.sendFile(path.join(__dirname + '/webpage/iframe.html'))
+})
+
 function checkIp(req, res, next) {
     if(validAuthString === req.params.authString) {
         next();
