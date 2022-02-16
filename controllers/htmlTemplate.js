@@ -111,7 +111,7 @@ module.exports = {
           }
         
           .unsubscribe-shell {
-            width: 150px;
+            width: 250px;
             margin: 0 auto;
             padding-top: 12px;
             text-align: center;
@@ -161,6 +161,10 @@ module.exports = {
         </div>
         <div class="footer">
           <div class="unsubscribe-shell">
+            <a href='https://bonfire.dragon-slayer.net/' target='_blank'>Bonfire SRD</a>
+            |
+            <a href='https://discord.com/invite/G8GVTME' target='_blank'>Discord</a>
+            |
             <a href='${urlBase}/unsubscribe/${email}' target='_blank'>Unsubscribe</a>
           </div>
         </div>

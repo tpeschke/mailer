@@ -60,11 +60,14 @@ let workHorse = {
             errors.push(`${person.email} has reached the end of the prepared emails`)
             workHorse.handleSendingEachEmail(mailingList, ++index, db)
         } else {
-            let messageString = '<h1>All Emails Send Out</h1><p>here is a list of the errors that occured:</p><br>'
-            errors.forEach(error => {
-                messageString += `<p>* ${error}</p>`
+            db.get.mailingListCount().then(response => {
+                let count = response[0].count
+                let messageString = `<h1>All Emails Send Out</h1><p>${count} People on the list</p><br/><p>here is a list of the errors that occured:</p><br>`
+                errors.forEach(error => {
+                    messageString += `<p>* ${error}</p>`
+                })
+                sendMailCtrl.sendEmailToMe("Emails Sent Out", messageString)
             })
-            sendMailCtrl.sendEmailToMe("Emails Sent Out", messageString)
         }
     },
     saveNewEmail: (req, res) => {

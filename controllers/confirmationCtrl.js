@@ -38,6 +38,7 @@ confirmation = {
                         db.get.emailToSend(welcomeEmailId).then(email => {
                             let emailToSend = email[0]
                             sendMailCtrl.sendEmail(personsEmail, emailToSend.subject, emailToSend.body).then(_ => {
+                                sendMailCtrl.sendEmailToMe('New Sign Up', 'Someone new signed up to the email list')
                                 res.sendFile(path.join(__dirname + '/../webpage/confirmationPage.html'))
                             })
                         })

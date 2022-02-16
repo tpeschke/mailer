@@ -13,9 +13,26 @@
   <link rel="stylesheet" href="/webpage/assets/reset.css">
   <link rel="stylesheet" href="/webpage/assets/body.css">
   <link rel="stylesheet" href="/webpage/assets/main.css">
+  <style>
+    #video-background {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1000;
+    }
+
+    body {
+      height: 100%;
+    }
+  </style>
 </head>
 
 <body>
+  <video autoplay muted loop id="video-background">
+    <source src="./webpage/assets/bg-2.mp4" type="video/mp4">
+  </video>
   <div id="invalidEmail" class="popup red">
     <p>Sorry, I don’t think that’s a valid email.</p>
   </div>
@@ -35,7 +52,7 @@
         <div class="left">
           <p>Sign up for our mailing list and </p>
           <h1>Get a free PDF of the Character Creation Guide & the Quick Reference</h1>
-          <p>Stay up to date on the latest news and get other free stuff!</p>
+          <p>Stay up to date on the latest news and get free stuff!</p>
         </div>
         <div class="right">
           <input type="text" placeholder="Email" id="inputOne">
