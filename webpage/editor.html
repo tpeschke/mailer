@@ -144,7 +144,12 @@
 <body>
     <div class="editor-shell content">
         <div id="clock"></div>
-        <br/>
+        <br />
+        <select id="emailListSelect">
+            <option value="" selected>New</option>
+        </select>
+        <br />
+        <br />
         <input id="subject" placeholder="Email Subject">
         <div id="editor" style='height: 100%'></div>
         <script>
@@ -228,8 +233,9 @@
 </body>
 
 <script src="/webpage/functions.js"></script>
-<script>      
+<script>
     getRemainingTime();
+    getListOfEmails();
 </script>
 
 </html>

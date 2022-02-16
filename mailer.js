@@ -6,6 +6,7 @@ const express = require('express')
     , path = require('path')
     , workHorse = require('./controllers/workhorseCtrl')
     , confirmation = require('./controllers/confirmationCtrl')
+    , edit = require('./controllers/editCtrl')
 
 const app = new express()
 app.use(bodyParser.json({limit: '50mb'}));
@@ -50,11 +51,19 @@ function checkIp(req, res, next) {
 app.get('/editor/:authString', checkIp, (req, res) => {
     res.sendFile(path.join(__dirname + '/webpage/editor.html'))
 })
+
+app.get('/listOfEmails', edit.getEmails)
+
+app.get('/specificEmail/:id', edit.getEmail)
+
 app.post('/addNewEmail', workHorse.saveNewEmail)
+
+app.post('/updateEmail', edit.updateEmail)
 
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname + '/webpage/index.html'))
 })
+
 // ================================== \\
 
 let interval = 1814400000
