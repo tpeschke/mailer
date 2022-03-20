@@ -55,6 +55,10 @@ function saveNewEmail(body) {
     }
 }
 
+function sendEmail(body) {
+    postData('sendEmail', body).then(_ => alert('Sent'))
+}
+
 function getRemainingTime() {
     getData('remainingTime').then(response => {
         const total = response.intervalLeft

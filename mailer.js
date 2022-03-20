@@ -60,6 +60,8 @@ app.post('/addNewEmail', workHorse.saveNewEmail)
 
 app.post('/updateEmail', edit.updateEmail)
 
+app.post('/sendEmail', workHorse.sendEmailImmediately)
+
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname + '/webpage/index.html'))
 })

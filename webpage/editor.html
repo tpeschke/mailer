@@ -197,6 +197,15 @@
                 }
             }
 
+            function sendEmailNow() {
+                let subject = document.getElementById("subject").value
+                    , body = editor.root.innerHTML;
+
+                if (subject && body) {
+                    sendEmail({ subject, body })
+                }
+            }
+
             function imageHandler() {
                 var range = this.quill.getSelection();
                 var value = prompt('please copy paste the image url here.');
@@ -206,6 +215,7 @@
             }
         </script>
         <button onclick="saveEmail()">Save Email</button>
+        <button onclick="sendEmailNow()">Send Email without Saving</button>
     </div>
 
     <div class="shell">
