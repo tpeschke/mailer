@@ -12,6 +12,10 @@ body {
   overflow-x: hidden;
 }
 
+.iframe-body {
+  overflow: hidden;
+}
+
 h1 {
   color: #b45f06;
   font-family: 'baldur';
