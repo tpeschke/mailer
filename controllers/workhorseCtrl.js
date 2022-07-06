@@ -31,7 +31,7 @@ let workHorse = {
         if (person && person.mailinglistbodyid !== 'waiting') {
             db.get.emailToSend(person.mailinglistbodyid).then(email => {
                 let emailToSend = email[0]
-                if (emailToSend) {
+                if (emailToSend && emailToSend.subject && emailToSend.body) {
                     sendMailCtrl.sendEmail(person.email, emailToSend.subject, emailToSend.body).then(result => {
                         if (result.accepted.length > 0) {
                             if (emailToSend.nextmailinglistbodyid) {
