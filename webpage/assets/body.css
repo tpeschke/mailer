@@ -1,6 +1,6 @@
 @font-face {
-  font-family: 'baldur';
-  src: url('./Baldur.ttf') format("truetype");
+  font-family: 'hamlet';
+  src: url('./Hamletornot.ttf') format("truetype");
 }
 
 body {
@@ -18,7 +18,7 @@ body {
 
 h1 {
   color: #b45f06;
-  font-family: 'baldur';
+  font-family: 'hamlet';
   margin: 10px 0;
   width: 55%;
 }
